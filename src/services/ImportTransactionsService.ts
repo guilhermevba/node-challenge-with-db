@@ -58,7 +58,9 @@ class ImportTransactionsService {
     const parser = csvParser({ from_line: 2 });
     const parseCsv = fs.createReadStream(filePath).pipe(parser);
     parseCsv.on('data', line => {
-      const [title, type, valueString, category] = line;
+      const [title, type, valueString, category] = line.map((cell: string) =>
+        cell.trim(),
+      );
       const value = parseFloat(valueString);
       if (!categories.includes(category)) {
         categories.push(category);
