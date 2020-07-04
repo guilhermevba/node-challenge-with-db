@@ -14,12 +14,26 @@ export default class CreateCategories1593825064998
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
+          {
+            name: 'title',
+            type: 'varchar',
+          },
+          {
+            name: 'created_at',
+            type: 'date',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'date',
+            default: 'now()',
+          },
         ],
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('catergories');
+    await queryRunner.dropTable('categories');
   }
 }
