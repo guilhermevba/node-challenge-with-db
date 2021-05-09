@@ -23,10 +23,10 @@ class Transaction {
   @Column('real')
   value: number;
 
-  @Column()
+  @Column('uuid')
   category_id: string;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, category => category.transaction, { eager: true })
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
